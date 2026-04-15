@@ -5,6 +5,7 @@ on:
   push:
     branches:
       - main
+      - master
 
 jobs:
   build:
@@ -13,6 +14,8 @@ jobs:
       node-version: '24.14.1'
       build-folder: dist
       artifact-name: react-build
+    secrets:
+      FRONTEND_ENV_FILE: ${{ secrets.FRONTEND_ENV_FILE }}
 
   deploy:
     needs: build
