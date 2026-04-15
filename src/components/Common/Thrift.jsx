@@ -4,6 +4,13 @@ import { ChevronLeft, ChevronRight, Heart } from 'react-feather';
 import axios from 'axios';
 import { API_BASE_URL } from '../../utils/config';
 
+const normalizeProductList = (payload) => {
+  if (Array.isArray(payload)) return payload;
+  if (Array.isArray(payload?.products)) return payload.products;
+  if (Array.isArray(payload?.data)) return payload.data;
+  return [];
+};
+
 const Thrift = () => {
   const [thriftProducts, setThriftProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -15,7 +22,8 @@ const Thrift = () => {
     const fetchThriftProducts = async () => {
       try {
         const { data } = await axios.get(`${API_BASE_URL}/api/products?limit=20`);
-        setThriftProducts(data.filter((p) => p.thrift === true));
+        const safeProducts = normalizeProductList(data);
+        setThriftProducts(safeProducts.filter((p) => p && p.thrift === true));
       } catch (err) {
         console.error('Failed to fetch thrift products:', err);
       } finally {

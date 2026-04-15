@@ -2,6 +2,21 @@ import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/config";
 
+const extractProductList = (payload) => {
+  if (Array.isArray(payload)) return payload;
+  if (Array.isArray(payload?.products)) return payload.products;
+  if (Array.isArray(payload?.data)) return payload.data;
+  return [];
+};
+
+const extractSingleProduct = (payload) => {
+  if (!payload) return null;
+  if (payload?.product && typeof payload.product === "object") return payload.product;
+  if (payload?.data && typeof payload.data === "object" && !Array.isArray(payload.data)) return payload.data;
+  if (typeof payload === "object" && !Array.isArray(payload)) return payload;
+  return null;
+};
+
 // Async thunk to fetch products by filters
 export const fetchProductsByFilters = createAsyncThunk(
   "products/fetchByFilters",
@@ -158,7 +173,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProductsByFilters.fulfilled, (state, action) => {
         state.loading = false;
-        state.products = Array.isArray(action.payload) ? action.payload : [];
+        state.products = extractProductList(action.payload);
       })
       .addCase(fetchProductsByFilters.rejected, (state, action) => {
         state.loading = false;
@@ -172,7 +187,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchProductDetails.fulfilled, (state, action) => {
         state.loading = false;
-        state.selectedProduct = action.payload;
+        state.selectedProduct = extractSingleProduct(action.payload);
       })
       .addCase(fetchProductDetails.rejected, (state, action) => {
         state.loading = false;
@@ -204,7 +219,7 @@ const productSlice = createSlice({
       })
       .addCase(fetchSimilarProduct.fulfilled, (state, action) => {
         state.loading = false;
-        state.similarProducts = action.payload;  
+        state.similarProducts = extractProductList(action.payload);
       })
       .addCase(fetchSimilarProduct.rejected, (state, action) => {
         state.loading = false;

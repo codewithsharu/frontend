@@ -4,6 +4,13 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { API_BASE_URL } from "../../utils/config";
 
+const normalizeProductList = (payload) => {
+  if (Array.isArray(payload)) return payload;
+  if (Array.isArray(payload?.products)) return payload.products;
+  if (Array.isArray(payload?.data)) return payload.data;
+  return [];
+};
+
 const NewArrivals = () => {
   const scrollRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -16,7 +23,7 @@ const NewArrivals = () => {
       try {
         setIsLoading(true);
         const response = await axios.get(`${API_BASE_URL}/api/products/new-arrivals`);
-        setNewArrivals(response.data);
+        setNewArrivals(normalizeProductList(response.data));
       } catch (error) {
         console.log(error);
       } finally {
