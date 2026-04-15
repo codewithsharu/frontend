@@ -1,0 +1,24 @@
+name: React Build
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    uses: codewithsharu/templates/.github/workflows/build.yml@main
+    with:
+      node-version: '24.14.1'
+      build-folder: dist
+      artifact-name: react-build
+
+  deploy:
+    needs: build
+    uses: codewithsharu/templates/.github/workflows/deploy-vercel-frontend.yml@main
+    with:
+      artifact-name: react-build
+      node-version: '24.14.1'
+    secrets:
+      VERCEL_TOKEN: ${{ secrets.VERCEL_TOKEN }}
