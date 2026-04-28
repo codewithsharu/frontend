@@ -1,0 +1,106 @@
+/* ./src/index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root{
+    font-family: "Inter",sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+/* ── Luxury logo animation ── */
+@keyframes lv-reveal {
+  0% { opacity: 0; letter-spacing: 0.35em; }
+  100% { opacity: 1; letter-spacing: 0.08em; }
+}
+@keyframes lv-gold-line {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+.lv-logo-animate {
+  animation: lv-reveal 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+.lv-logo-line {
+  animation: lv-gold-line 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s both;
+}
+
+/* Order confirmation animations */
+@keyframes oc-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes oc-rise-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes oc-badge-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0.6);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.08);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes oc-check-reveal {
+  from {
+    stroke-dashoffset: 80;
+    opacity: 0;
+  }
+  to {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes oc-cta-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  }
+  50% {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+  }
+}
+
+.oc-page-enter {
+  animation: oc-fade-in 0.35s ease-out both;
+}
+
+.oc-rise-up {
+  opacity: 0;
+  animation: oc-rise-up 0.55s ease-out forwards;
+}
+
+.oc-success-badge {
+  border-radius: 9999px;
+  background: linear-gradient(145deg, #fff5da, #f2d89c);
+  box-shadow: 0 8px 24px rgba(184, 145, 70, 0.28);
+  padding: 0.45rem;
+  animation: oc-badge-pop 0.6s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s both;
+}
+
+.oc-checkmark path {
+  stroke-dasharray: 80;
+  stroke-dashoffset: 80;
+  animation: oc-check-reveal 0.65s ease-out 0.35s forwards;
+}
+
+.oc-cta-pulse {
+  animation: oc-cta-pulse 2s ease-in-out 0.7s infinite;
+}
