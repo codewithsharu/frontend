@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sharu — Fashion &amp; Style</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Announcement Bar -->
+  <div class="announcement-bar">
+    <span>COMPLIMENTARY SHIPPING ON ORDERS ABOVE ₹999 &nbsp;·&nbsp; EASY 15-DAY RETURNS</span>
+  </div>
+
+  <!-- Header -->
+  <header class="site-header" id="site-header">
+    <nav class="navbar">
+
+      <!-- Left: Hamburger Menu -->
+      <button class="nav-icon hamburger" id="menu-btn" aria-label="Open menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <!-- Center: Logo -->
+      <a href="index.html" class="logo">SHARU</a>
+
+      <!-- Right: Account + Cart -->
+      <div class="nav-right">
+        <button class="nav-icon" id="account-btn" aria-label="Account">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="8" r="4"/>
+            <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/>
+          </svg>
+        </button>
+        <button class="nav-icon cart-icon" id="cart-btn" aria-label="Cart">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/>
+            <line x1="3" y1="6" x2="21" y2="6"/>
+            <path d="M16 10a4 4 0 0 1-8 0"/>
+          </svg>
+          <span class="cart-count" id="cart-count">0</span>
+        </button>
+      </div>
+
+    </nav>
+
+    <!-- Search Bar Row -->
+    <div class="search-row">
+      <div class="search-wrapper">
+        <input
+          type="text"
+          class="search-input"
+          id="search-input"
+          placeholder="Search for products…"
+          autocomplete="off"
+          aria-label="Search products"
+        />
+        <button class="search-btn" id="search-btn" aria-label="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile Menu Drawer -->
+  <div class="menu-overlay" id="menu-overlay"></div>
+  <nav class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <button class="close-menu" id="close-menu" aria-label="Close menu">&times;</button>
+    <ul>
+      <li><a href="#">New Arrivals</a></li>
+      <li><a href="#">Women</a></li>
+      <li><a href="#">Men</a></li>
+      <li><a href="#">Accessories</a></li>
+      <li><a href="#">Sale</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="main-content">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-text">
+        <p class="hero-label">New Collection</p>
+        <h1>Elevate Your<br />Everyday Style</h1>
+        <a href="#products" class="btn-primary">Shop Now</a>
+      </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products-section" id="products">
+      <h2 class="section-title">Featured Products</h2>
+      <p class="no-results" id="no-results" style="display:none;">No products found.</p>
+      <div class="products-grid" id="products-grid">
+
+        <article class="product-card" data-name="Silk Wrap Dress">
+          <div class="product-img-wrap">
+            <div class="product-img placeholder-img" style="background:#e8e0d8;"></div>
+          </div>
+          <div class="product-info">
+            <h3>Silk Wrap Dress</h3>
+            <p class="product-price">₹2,499</p>
+            <button class="btn-add" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Linen Blazer">
+          <div class="product-img-wrap">
+            <div class="product-img placeholder-img" style="background:#d8dfe8;"></div>
+          </div>
+          <div class="product-info">
+            <h3>Linen Blazer</h3>
+            <p class="product-price">₹3,999</p>
+            <button class="btn-add" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Cotton Kurti Set">
+          <div class="product-img-wrap">
+            <div class="product-img placeholder-img" style="background:#e8d8e0;"></div>
+          </div>
+          <div class="product-info">
+            <h3>Cotton Kurti Set</h3>
+            <p class="product-price">₹1,799</p>
+            <button class="btn-add" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Floral Midi Skirt">
+          <div class="product-img-wrap">
+            <div class="product-img placeholder-img" style="background:#d8e8d8;"></div>
+          </div>
+          <div class="product-info">
+            <h3>Floral Midi Skirt</h3>
+            <p class="product-price">₹1,299</p>
+            <button class="btn-add" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Classic White Shirt">
+          <div class="product-img-wrap">
+            <div class="product-img placeholder-img" style="background:#f0ede8;"></div>
+          </div>
+          <div class="product-info">
+            <h3>Classic White Shirt</h3>
+            <p class="product-price">₹1,599</p>
+            <button class="btn-add" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Palazzo Pants">
+          <div class="product-img-wrap">
+            <div class="product-img placeholder-img" style="background:#e0e0e8;"></div>
+          </div>
+          <div class="product-info">
+            <h3>Palazzo Pants</h3>
+            <p class="product-price">₹1,199</p>
+            <button class="btn-add" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Embroidered Kurta">
+          <div class="product-img-wrap">
+            <div class="product-img placeholder-img" style="background:#ece8d8;"></div>
+          </div>
+          <div class="product-info">
+            <h3>Embroidered Kurta</h3>
+            <p class="product-price">₹2,199</p>
+            <button class="btn-add" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </article>
+
+        <article class="product-card" data-name="Denim Jacket">
+          <div class="product-img-wrap">
+            <div class="product-img placeholder-img" style="background:#d8e4ec;"></div>
+          </div>
+          <div class="product-info">
+            <h3>Denim Jacket</h3>
+            <p class="product-price">₹2,899</p>
+            <button class="btn-add" onclick="addToCart(this)">Add to Cart</button>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p class="footer-logo">SHARU</p>
+      <p class="footer-copy">&copy; 2026 Sharu. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
